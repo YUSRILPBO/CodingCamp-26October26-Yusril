@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense & Budget Visualizer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header + Total Balance -->
+    <header class="card header-card">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+      <h1>Expense &amp; Budget Visualizer</h1>
+      <p class="label">TOTAL BALANCE</p>
+      <p id="total-balance" class="balance">Rp0</p>
+    </header>
+
+    <main class="grid">
+
+      <!-- Input Form -->
+      <section class="card">
+        <h2>Add Transaction</h2>
+        <form id="transaction-form" novalidate>
+          <label for="item-name">Item Name</label>
+          <input type="text" id="item-name" placeholder="e.g. Nasi goreng">
+
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" placeholder="e.g. 25000" min="0" step="any">
+
+          <label for="category">Category</label>
+          <select id="category"></select>
+
+          <p id="form-error" class="error" role="alert"></p>
+          <button type="submit" class="btn btn-primary btn-block">Add Transaction</button>
+        </form>
+
+        <!-- Optional: custom categories -->
+        <div class="custom-category">
+          <label for="new-category">Add Custom Category</label>
+          <div class="row">
+            <input type="text" id="new-category" placeholder="e.g. Health">
+            <button type="button" id="add-category-btn" class="btn btn-primary">Add</button>
+          </div>
+          <p id="category-error" class="error" role="alert"></p>
+        </div>
+      </section>
+
+      <!-- Spending Chart -->
+      <section class="card">
+        <h2>Spending by Category</h2>
+        <div class="chart-wrap">
+          <canvas id="spending-chart"></canvas>
+          <p id="chart-empty" class="empty">No data yet. Add a transaction to see the chart.</p>
+        </div>
+      </section>
+
+      <!-- Transaction List -->
+      <section class="card card-wide">
+        <div class="list-header">
+          <h2>Transactions</h2>
+          <!-- Optional: sort -->
+          <select id="sort" aria-label="Sort transactions">
+            <option value="newest">Newest first</option>
+            <option value="amount-desc">Amount: high to low</option>
+            <option value="amount-asc">Amount: low to high</option>
+            <option value="category">Category (A-Z)</option>
+          </select>
+        </div>
+        <ul id="transaction-list" class="transaction-list"></ul>
+        <p id="list-empty" class="empty">No transactions yet.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

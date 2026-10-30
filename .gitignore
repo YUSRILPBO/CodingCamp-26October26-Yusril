@@ -1,0 +1,6 @@
+# Dependencies (installed by `npm install`; not part of the app)
+node_modules/
+
+# Test / build artifacts
+coverage/
+dist/
